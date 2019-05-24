@@ -5,23 +5,6 @@ class Hitsounds(bl2sdk.BL2MOD):
     Description = "Plays a Hitsound on damaging an enemy.\nWritten by Juso"
 
     def SettingsInputPressed(self, name):
-        """Called by the mod manager when one of the actions the mod has
-		registered for has been invoked via its associated key.
-
-		Mods may define this method to respond to user actions like so:
-
-			def SettingsInputPressed(self, name):
-				if name == "Do Something":
-					...
-				elif name == "Do Something Else":
-					...
-
-		Parameters
-		----------
-		name : str
-		The name of the action that was associated with a key in the
-		`SettingsInputs` property, that has now been pressed by the user.
-		"""
         if name == "Enable":
             self.Status = "Enabled"
             self.SettingsInputs = { 'Enter': "Enabled with Particles" }
