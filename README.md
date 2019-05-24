@@ -1,6 +1,7 @@
 # bl2sdk_Mods
 ## These mods are made possible by Abahbob's awesome python-sdk for Borderlands
 ## To use these mods please install the [python-sdk](https://github.com/bl-sdk/PythonSDK)
+### If you like what you see and want to use it yourself go ahead, use these mods freely as resource for anything. No credits needed.
 ## chronos
 - Replaces the Skullmasher
 - Slows down time while zoomed in
@@ -20,3 +21,5 @@
 ## ttk_dps
 - Adds a message with dps and ttk
 - The DPS gets calculated from the moment you deal damage up to your next kill -> The longer your fight, the more precise the DPS calculations get
+
+
