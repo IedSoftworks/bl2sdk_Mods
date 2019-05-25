@@ -20,6 +20,11 @@
 - DoTs that are inflicted on the crit spot will still damage the enemy
 - Pretty fun with my hitsounds mod with the particles active
 
+## emotes
+- Allows the player to use animations
+- should work in coop, so you can see the animations/emotes of each other
+- Uses the arrow keys, no need to modify yourself
+
 ## hitsounds
 - Plays a sound if you damage an enemy
 - You also have the option to toggle optional Particles on Crits
