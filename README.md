@@ -14,6 +14,12 @@
 - 50% chance to trigger a kill commentator on kill
 - The combo lives 6 secons, so play fast, kill faster
 
+## critonly
+- Challenge GameMode
+- Enemies that do have a crit spot can now only be damaged with critical hits
+- DoTs that are inflicted on the crit spot will still damage the enemy
+- Pretty fun with my hitsounds mod with the particles active
+
 ## hitsounds
 - Plays a sound if you damage an enemy
 - You also have the option to toggle optional Particles on Crits
