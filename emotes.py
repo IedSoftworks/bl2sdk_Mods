@@ -11,6 +11,11 @@ class Emotes(bl2sdk.BL2MOD):
 
     #Loads the Package requierd for the Animations
     def ForceLoad(self):
+        #Needed for the cool Katana moves
+        bl2sdk.LoadPackage("GD_Assassin_Streaming_SF")
+        bl2sdk.KeepAlive(bl2sdk.FindObject("WillowAnimDefinition", "GD_Assassin_Hologram.SpecialMove.SpecialMove_HologramScrewAround"))
+        bl2sdk.KeepAlive(bl2sdk.FindObject("AnimSet", "Anim_Assassin.Base_Assassin"))
+        #We dont want these animations to unload
         Objects = [
                 "GD_NPCShared.Perches.Perch_NPC_ArmsCrossedForever:SpecialMove_PerchLoop_0",
                 "GD_NPCShared.Perches.Perch_NPC_BangOnSomething:SpecialMove_PerchLoop_0",
@@ -24,24 +29,37 @@ class Emotes(bl2sdk.BL2MOD):
                 "GD_NPCShared.Perches.Perch_NPC_PeerUnder:SpecialMove_PerchLoop_0",
                 "GD_Moxxi.Perches.Perch_Moxxi_Dance:SpecialMove_PerchLoop_0",
                 "GD_Moxxi.Perches.Perch_Moxxi_WipeBar:SpecialMove_PerchLoop_0",
-                "GD_TannisNPC.Perches.Perch_Tannis_LookAround:SpecialMove_PerchLoop_0",
                 "GD_TannisNPC.Perches.Perch_Tannis_HandsOnHips:SpecialMove_PerchLoop_0",
-                "GD_TannisNPC.Perches.Perch_Tannis_Thinking:SpecialMove_PerchLoop_0"
+                "GD_BrickNPC.Perches.Perch_Brick_Pushups:SpecialMove_PerchLoop_0"
+
             ]
         bl2sdk.LoadPackage("SanctuaryAir_Dynamic")
         for Object in Objects:
             x = bl2sdk.FindObject("SpecialMove_PerchLoop", Object)
             bl2sdk.KeepAlive(x)
+        #This are our Particles that can be used
+        Particles = [
+                "FX_ENV_Misc.Particles.Part_Confetti",
+                "FX_Distillery.Particles.PS_Hearts_Looping_8-Bit",
+                "FX_CHAR_Merc.Particles.Part_Merc_MoneyShotImpact",
+                "FX_Distillery.Particles.PS_Nast_Drunk_Thresher"
+                ]
+        bl2sdk.LoadPackage("Distillery_Dynamic")
+        bl2sdk.LoadPackage("Distillery_Mission")
+        bl2sdk.LoadPackage("GD_Mercenary_Streaming_SF")
+        for Particle in Particles:
+            x = bl2sdk.FindObject("ParticleSystem", Particle)
+            bl2sdk.KeepAlive(x)
 
     #Returns the name of the Animation thats played
     _animation = 0
-    def ChooseAnimation(self):
+    def ChooseAnimation(self):     
         Animations = [
                 "Perch_CoyoteUglyDance_Loop",
                 "Perch_WipeBarTop_Loop",
                 "Perch_HandsOnHips_Loop",
-                "Perch_LookAround_Loop",
-                "Perch_ThinkChin_Loop",
+                "Perch_Pushups_Loop",
+                "Perch_MockPunching_Loop",
                 "Perch_Sittingonbarrel_Loop",
                 "Perch_ThrowDarts_Loop",
                 "Kick_Object_on_Ground",
@@ -52,9 +70,15 @@ class Emotes(bl2sdk.BL2MOD):
                 "Perch_PeerUnder_Loop",
                 "Perch_ChairSit_Loop",
                 "Perch_BangOnWall_Loop",
-                "Perch_ArmsCrossed_Loop"
+                "Perch_ArmsCrossed_Loop",
+                "Hologram_Kata",
+                "FX_ENV_Misc.Particles.Part_Confetti",
+                "FX_Distillery.Particles.PS_Hearts_Looping_8-Bit",
+                "FX_CHAR_Merc.Particles.Part_Merc_MoneyShotImpact",
+                "FX_Distillery.Particles.PS_Nast_Drunk_Thresher"
                 ]
-        return Animations[self._animation % len(Animations)-1]
+        self._animation = self._animation % len(Animations) 
+        return Animations[self._animation]
     #Returns the current PlayerController
     def GetPlayerController(self):
         return bl2sdk.GetEngine().GamePlayers[0].Actor
@@ -66,32 +90,47 @@ class Emotes(bl2sdk.BL2MOD):
             HUD.AddTrainingText(self.ChooseAnimation(), "Emote", 3.000000, (), "", False, 0, self.GetPlayerController().PlayerReplicationInfo, True)
 
     def PlayEmote(self):
-        #We are going to change the animations that are played on melee to play our emotes instead
-        SpecialMoves = [
-                    "GD_Assassin_Streaming.Anims.WeaponAnim_Melee",
-                    "GD_Lilac_Psycho_Streaming.Anims.WeaponAnim_Melee",
-                    "GD_Mercenary_Streaming.Anims.WeaponAnim_Melee",
-                    "GD_PlayerShared.Anims.WeaponAnim_Melee_WeaponBlade",
-                    "GD_Siren_Streaming.Anims.WeaponAnim_Melee",
-                    "GD_Soldier_Streaming.Anims.WeaponAnim_Melee",
-                    "GD_Tulip_Mechro_Streaming.Anims.WeaponAnim_Melee"
-            ]
+        #up to and including index 16 are animations only, after that come ParticleSystems
+        if self._animation < 17:
+            #We are going to change the animations that are played on melee to play our emotes instead
+            SpecialMoves = [
+                        "GD_Assassin_Streaming.Anims.WeaponAnim_Melee",
+                        "GD_Lilac_Psycho_Streaming.Anims.WeaponAnim_Melee",
+                        "GD_Mercenary_Streaming.Anims.WeaponAnim_Melee",
+                        "GD_PlayerShared.Anims.WeaponAnim_Melee_WeaponBlade",
+                        "GD_Siren_Streaming.Anims.WeaponAnim_Melee",
+                        "GD_Soldier_Streaming.Anims.WeaponAnim_Melee",
+                        "GD_Tulip_Mechro_Streaming.Anims.WeaponAnim_Melee"
+                ]
         
-        PC = self.GetPlayerController()
-        for Move in SpecialMoves:
-            if bl2sdk.FindObject("SpecialMove_WeaponAction", Move) != None:
-                PC.ConsoleCommand("set "+ Move + " AnimName " + self.ChooseAnimation(), 0)
-                PC.ConsoleCommand("set "+ Move + " EndingCondition EC_Loop", 0)
-                #The first 2 animations are Moxxie only
-                if self._animation in (0, 1):
-                    PC.ConsoleCommand("set "+ Move + " AnimSet AnimSet'Anim_Moxxi.Anim_Moxxi'", 0)
-                #Index 2,3 and 4 are Tannis only
-                elif self._animation in (2, 3, 4):
-                    PC.ConsoleCommand("set "+ Move + " AnimSet AnimSet'Anim_Tannis.Anim_Tannis'", 0)
-                else:
-                   PC.ConsoleCommand("set "+ Move + " AnimSet AnimSet'Anim_Generic_NPC.Anim_Generic_NPC'", 0)
-        PC.ConsoleCommand("camera 3rd", 0)
-        PC.Behavior_Melee()
+            PC = self.GetPlayerController()
+            for Move in SpecialMoves:
+                if bl2sdk.FindObject("SpecialMove_WeaponAction", Move) != None:
+                    PC.ConsoleCommand("set "+ Move + " AnimName " + self.ChooseAnimation(), 0)
+                    PC.ConsoleCommand("set "+ Move + " EndingCondition EC_Loop", 0)
+                    #The first 2 animations are Moxxie only
+                    if self._animation in (0, 1):
+                        PC.ConsoleCommand("set "+ Move + " AnimSet AnimSet'Anim_Moxxi.Anim_Moxxi'", 0)
+                    #Index 2 is Tannis only
+                    elif self._animation == 2:
+                        PC.ConsoleCommand("set "+ Move + " AnimSet AnimSet'Anim_Tannis.Anim_Tannis'", 0)
+                    #Index 3, 4 is Brick only
+                    elif self._animation in (3, 4):
+                        PC.ConsoleCommand("set "+ Move + " AnimSet AnimSet'Anim_Brick.Anim_Brick'", 0)
+                        
+                    elif self._animation == 16:
+                        PC.ConsoleCommand("set "+ Move + " AnimSet AnimSet'Anim_Assassin.Base_Assassin'", 0)
+                    else:
+                        PC.ConsoleCommand("set "+ Move + " AnimSet AnimSet'Anim_Generic_NPC.Anim_Generic_NPC'", 0)
+            PC.ConsoleCommand("camera 3rd", 0)
+            PC.Behavior_Melee()
+        else:
+            PlayerMesh = self.GetPlayerController().Pawn.Mesh
+            Particle = bl2sdk.FindObject("ParticleSystem", self.ChooseAnimation())
+            self.GetPlayerController().ConsoleCommand("camera 3rd", 0)
+            bl2sdk.GetEngine().GetCurrentWorldInfo().MyEmitterPool.SpawnEmitterMeshAttachment(Particle, PlayerMesh, "head")
+
+
     #Reverse the changes of PlayEmote()
     def StopEmote(self):
         SpecialMoves = [
@@ -110,9 +149,10 @@ class Emotes(bl2sdk.BL2MOD):
                 PC.ConsoleCommand("set "+ Move + " AnimName Melee", 0)
                 PC.ConsoleCommand("set "+ Move + " EndingCondition EC_OnBlendOut", 0)
                 PC.ConsoleCommand("set "+ Move + " AnimSet None", 0)
+        
         PC.ConsoleCommand("camera 1st", 0)
         PC.Behavior_Melee()
-
+        bl2sdk.GetEngine().GetCurrentWorldInfo().MyEmitterPool.ClearAllPoolComponents()
 
     def GameInputRebound(self, name, key):
         pass
