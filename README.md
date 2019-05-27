@@ -7,12 +7,14 @@
 - Slows down time while zoomed in
 - Randomizes its skin on unzooming
 - Deals high damage and increased crit
+[YouTube](https://youtu.be/lS_Dl43om0s)
 
 ## combocounter
 - Adds a kill combo counter to the game
 - Features 15 different combo names
 - 50% chance to trigger a kill commentator on kill
 - The combo lives 6 secons, so play fast, kill faster
+[YouTube](https://youtu.be/l_nP-QVjaJA)
 
 ## critonly
 - Challenge GameMode
@@ -24,6 +26,7 @@
 - Allows the player to use animations
 - should work in coop, so you can see the animations/emotes of each other
 - Uses the arrow keys, no need to modify yourself
+[YouTube](https://youtu.be/NFrye102ENY)
 
 ## hitsounds
 - Plays a sound if you damage an enemy
