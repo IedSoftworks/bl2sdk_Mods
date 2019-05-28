@@ -32,6 +32,10 @@
 - Plays a sound if you damage an enemy
 - You also have the option to toggle optional Particles on Crits
 
+## pizzatime
+- Replaces the Fastballs Mesh with a Pizza
+- [picture](https://ibb.co/nb1cmgt)
+
 ## ttk_dps
 - Adds a message with dps and ttk
 - The DPS gets calculated from the moment you deal damage up to your next kill -> The longer your fight, the more precise the DPS calculations get
