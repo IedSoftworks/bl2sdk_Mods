@@ -36,6 +36,12 @@
 - Replaces the Fastballs Mesh with a Pizza
 - [picture](https://ibb.co/nb1cmgt)
 
+## sliding
+- Allows you to slide in BL2
+- Crouching directly after the sprint lets you slide
+- Slides can be extended or shortened by sloped surfaces
+- [YouTube](https://youtu.be/u0Ao8SGIbVU)
+
 ## ttk_dps
 - Adds a message with dps and ttk
 - The DPS gets calculated from the moment you deal damage up to your next kill -> The longer your fight, the more precise the DPS calculations get
