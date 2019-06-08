@@ -158,16 +158,16 @@ class Emotes(bl2sdk.BL2MOD):
     def GameInputRebound(self, name, key):
         pass
 
-    def GameInputPressed(self, name):
-        if name == "Next Emote":
+    def GameInputPressed(self, input):
+        if input.Name == "Next Emote":
             self._animation += 1
             self.FeedbackEmote()
-        elif name == "Previous Emote":
+        elif input.Name == "Previous Emote":
             self._animation -= 1
             self.FeedbackEmote()
-        if name == "Play Emote":
+        if input.Name == "Play Emote":
             self.PlayEmote()
-        if name == "Stop Emote":
+        if input.Name == "Stop Emote":
             self.StopEmote()
 
 
