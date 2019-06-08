@@ -32,6 +32,15 @@
 - Plays a sound if you damage an enemy
 - You also have the option to toggle optional Particles on Crits
 
+## LootNotificator
+- Compatible with [Exodus](https://www.nexusmods.com/borderlands2/mods/178) and [Reborn](https://www.nexusmods.com/borderlands2/mods/115)
+- Never miss your precious Loot ever again!
+- Will play a special Particle depending on the items rarity
+- Will also play a Sound with the additional Particle
+- Does not work with Vanilla or UCP! If you do want support for it or with any other modpack, then please @ me on Discord
+- [YouTube (Exodus)](https://www.youtube.com/watch?v=VYvmQtmyD1o)
+- [YouTube (Reborn)](https://www.youtube.com/watch?v=lUML6lXfW14)
+
 ## PizzaForFastball
 - Replaces the Fastballs Mesh with a Pizza
 - [picture](https://ibb.co/nb1cmgt)
