@@ -24,16 +24,16 @@ class Sliding(bl2sdk.BL2MOD):
             PC.Pawn.CrouchedPct = self.SlideSpeed = 0.42
         if PC.bDuck == 1 and self.SlideSpeed >= 0.421:#These are the conditions to count as sliding
             if SlopeDelta > 0.5 and PC.Pawn.Physics != 2:#Check for sliding up a slope
-                PC.Rotation.Roll = int((self.SlideSpeed-0.4)*275)
-                self.SlideSpeed -= ((params.DeltaTime * (1.15 + SlopeDelta * 0.5)) / self.SlideSpeed)
+                PC.Rotation.Roll = int((self.SlideSpeed-0.4)*375)
+                self.SlideSpeed -= ((params.DeltaTime * (1.75 + SlopeDelta * 0.5)) / self.SlideSpeed)
                 PC.Pawn.CrouchedPct = self.SlideSpeed
-            elif SlopeDelta < -0.75 and PC.Pawn.Physics != 2:#Check for sliding down a slope
-                PC.Rotation.Roll = int((self.SlideSpeed-0.4)*275)
-                self.SlideSpeed -= ((params.DeltaTime * (1.15 + SlopeDelta * 0.25)) / self.SlideSpeed)
+            elif SlopeDelta < -0.5 and PC.Pawn.Physics != 2:#Check for sliding down a slope
+                PC.Rotation.Roll = int((self.SlideSpeed-0.4)*375)
+                self.SlideSpeed -= ((params.DeltaTime * (SlopeDelta * 0.25)) / self.SlideSpeed)
                 PC.Pawn.CrouchedPct = self.SlideSpeed
             elif PC.Pawn.Physics != 2:#No slope and not falling
-                PC.Rotation.Roll = int((self.SlideSpeed-0.4)*275)
-                self.SlideSpeed -= ((params.DeltaTime * 1.15) / self.SlideSpeed)
+                PC.Rotation.Roll = int((self.SlideSpeed-0.4)*375)
+                self.SlideSpeed -= ((params.DeltaTime * 1.75) / self.SlideSpeed)
                 PC.Pawn.CrouchedPct = self.SlideSpeed
             else:#While in air dont change the slide speed
                 PC.Rotation.Roll = int((self.SlideSpeed-0.4)*275)
