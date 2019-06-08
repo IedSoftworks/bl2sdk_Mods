@@ -2,6 +2,10 @@
 ## These mods are made possible by Abahbob's awesome python-sdk for Borderlands
 ## To use these mods please install the [python-sdk](https://github.com/bl-sdk/PythonSDK)
 ### If you like what you see and want to use it yourself go ahead, use these mods freely as resource for anything. No credits needed.
+## BeGoneOutOfBoundsLoot
+- On the press of one button you can now teleport all the Loot in one map to your position
+- By default the button is "Enter", can be rebinded
+
 ## Chronos
 - Replaces the Skullmasher
 - Slows down time while zoomed in
