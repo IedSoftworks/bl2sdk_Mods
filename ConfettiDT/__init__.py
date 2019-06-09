@@ -10,6 +10,7 @@ class Confetti(bl2sdk.BL2MOD):
     def Load(self):
         bl2sdk.LoadPackage("SanctuaryAir_Dynamic")
         bl2sdk.KeepAlive(bl2sdk.FindObject("ParticleSystem", "FX_ENV_Misc.Particles.Part_Confetti"))
+        bl2sdk.KeepAlive(bl2sdk.FindObject("AkEvent", "Ake_Seq_Missions.SQ.Ak_Play_SQ_ClaptrapParty_hornBlow"))
 
     def PlaySMD(self, caller, function, params):
         BPD = caller.BehaviorProviderDefinition
@@ -17,6 +18,7 @@ class Confetti(bl2sdk.BL2MOD):
         EmitterPool = bl2sdk.GetEngine().GetCurrentWorldInfo().MyEmitterPool
         Arms = bl2sdk.GetEngine().GamePlayers[0].Actor.Pawn.Arms
         EmitterPool.SpawnEmitterMeshAttachment(bl2sdk.FindObject("ParticleSystem", "FX_ENV_Misc.Particles.Part_Confetti"), Arms, "L_Forearm")
+        bl2sdk.GetEngine().GamePlayers[0].Actor.Pawn.PlayAkEvent(bl2sdk.FindObject("AkEvent", "Ake_Seq_Missions.SQ.Ak_Play_SQ_ClaptrapParty_hornBlow"))
 
     def Enable(self):
         self.Load()
