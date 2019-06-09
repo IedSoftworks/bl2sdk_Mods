@@ -20,6 +20,11 @@
 - The combo lives 6 secons, so play fast, kill faster
 - [YouTube](https://youtu.be/l_nP-QVjaJA)
 
+## ConfettiDT
+- Replaces Death-Trap with a handful of confetti
+- She brings her hand up as normal, confetti pops, does nothing
+- Requested by ilovecheese2
+
 ## CritsonlyGameMode
 - Challenge GameMode
 - Enemies that do have a crit spot can now only be damaged with critical hits
