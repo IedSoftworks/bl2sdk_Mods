@@ -50,6 +50,13 @@
 - [YouTube (Exodus)](https://www.youtube.com/watch?v=VYvmQtmyD1o)
 - [YouTube (Reborn)](https://www.youtube.com/watch?v=lUML6lXfW14)
 
+## MapFastTravel
+- Allows you to fast travel to any point of interest from your status menu map
+- The second placed marker (or the removed marker) decides where you teleport to
+- Vendors, FTs, Vehicles and Travel Points are all possible to teleport to
+- Always make sure to remove the custom marker before closing the map, else it may bug out for a short duration and you get teleported to the wrong location once or twice!
+- [YouTube](https://youtu.be/qHVZJ0VUMSg)
+
 ## PizzaForFastball
 - Replaces the Fastballs Mesh with a Pizza
 - [picture](https://ibb.co/nb1cmgt)
