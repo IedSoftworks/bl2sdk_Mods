@@ -57,6 +57,9 @@
 - Always make sure to remove the custom marker before closing the map, else it may bug out for a short duration and you get teleported to the wrong location once or twice!
 - [YouTube](https://youtu.be/qHVZJ0VUMSg)
 
+## NoCrosshair
+- Removes the crosshair while not zoomed in
+
 ## PizzaForFastball
 - Replaces the Fastballs Mesh with a Pizza
 - [picture](https://ibb.co/nb1cmgt)
