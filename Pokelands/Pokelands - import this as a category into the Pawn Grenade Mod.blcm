@@ -6,7 +6,7 @@
 	<body>
 		<category name="Pokelands - SDK mod requierd">
 			<category name="Nasty Surprise Changes">
-				<code profiles="default">set GD_GrenadeMods.Title.Title_NastySurprise PartName Pokéball</code>
+				<code profiles="default">set GD_GrenadeMods.Title.Title_NastySurprise PartName PokÃ©ball</code>
 				<code profiles="default">set GD_GrenadeMods.A_Item_Legendary.GrenadeMod_NastySurprise PrefixList ()</code>
 				<code profiles="default">set GD_GrenadeMods.A_Item_Legendary.GrenadeMod_NastySurprise UIStatList ((bDisplayAsModifierOnly=False,AttributeStyle=ATTRSTYLE_JustNumber,SupplementalAttributeStyle=ATTRSTYLE_JustNumber,StatCombinationMethod=SCM_Multiply,Attribute=AttributeDefinition'D_Attributes.GrenadeMod.FuseTime',ConstraintAttribute=None,SupplementalAttributeExpression=(AttributeOperand1=None,ComparisonOperator=OPERATOR_EqualTo,Operand2Usage=OPERAND_PreferAttribute,AttributeOperand2=None,ConstantOperand2=0.000000),SupplementalAttributeToAppend=None))</code>
 				<code profiles="default">set GD_GrenadeMods.Delivery.Delivery_NastySurprise:AttributePresentationDefinition_4 Description Catch 'em all!</code>
@@ -68,7 +68,7 @@
 </BLCMM>
 
 #Commands:
-set GD_GrenadeMods.Title.Title_NastySurprise PartName Pokéball
+set GD_GrenadeMods.Title.Title_NastySurprise PartName PokÃ©ball
 set GD_GrenadeMods.A_Item_Legendary.GrenadeMod_NastySurprise PrefixList ()
 set GD_GrenadeMods.A_Item_Legendary.GrenadeMod_NastySurprise UIStatList ((bDisplayAsModifierOnly=False,AttributeStyle=ATTRSTYLE_JustNumber,SupplementalAttributeStyle=ATTRSTYLE_JustNumber,StatCombinationMethod=SCM_Multiply,Attribute=AttributeDefinition'D_Attributes.GrenadeMod.FuseTime',ConstraintAttribute=None,SupplementalAttributeExpression=(AttributeOperand1=None,ComparisonOperator=OPERATOR_EqualTo,Operand2Usage=OPERAND_PreferAttribute,AttributeOperand2=None,ConstantOperand2=0.000000),SupplementalAttributeToAppend=None))
 set GD_GrenadeMods.Delivery.Delivery_NastySurprise:AttributePresentationDefinition_4 Description Catch 'em all!
