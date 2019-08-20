@@ -64,6 +64,12 @@
 - Replaces the Fastballs Mesh with a Pizza
 - [picture](https://ibb.co/nb1cmgt)
 
+## Pokelands
+- Adds a Pokeball to BL2
+- After killing an enemy you can summon him using the Pokeball
+- Requiers [Pawn Grenade](https://www.nexusmods.com/borderlands2/mods/234)
+- [YouTube](https://www.youtube.com/watch?v=r1H_Z9LRDUU&feature=youtu.be)
+
 ## Sliding
 - Allows you to slide in BL2
 - Crouching directly after the sprint lets you slide
