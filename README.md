@@ -67,7 +67,7 @@
 ## Pokelands
 - Adds a Pokeball to BL2
 - After killing an enemy you can summon him using the Pokeball
-- Requiers [Pawn Grenade](https://www.nexusmods.com/borderlands2/mods/234)
+- Requires [Pawn Grenade](https://www.nexusmods.com/borderlands2/mods/234)
 - [YouTube](https://www.youtube.com/watch?v=r1H_Z9LRDUU&feature=youtu.be)
 
 ## Sliding
