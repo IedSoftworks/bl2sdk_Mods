@@ -25,6 +25,12 @@
 - She brings her hand up as normal, confetti pops, does nothing
 - Requested by ilovecheese2
 
+## ConfigurableViewmodel
+- Allows the change of your Viewmodel in game
+- Adds sliders in game menus for all Viewmodel related settings
+- Saves settings to .jsons
+- [YouTube](https://youtu.be/nABmVIYpuXg)
+
 ## CritsonlyGameMode
 - Challenge GameMode
 - Enemies that do have a crit spot can now only be damaged with critical hits
