@@ -86,4 +86,9 @@
 - Adds a message with dps and ttk
 - The DPS gets calculated from the moment you deal damage up to your next kill -> The longer your fight, the more precise the DPS calculations get
 
+## WeaponRandomizer
+- Randomizes the gun in the first slot every 10 seconds
+- Most of the guns should look and work like actual guns
+- Gives Ammo for the new randomized WeaponType so you wont have to stop shooting
+- [YouTube](https://youtu.be/wasQYpeb6jA)
 
