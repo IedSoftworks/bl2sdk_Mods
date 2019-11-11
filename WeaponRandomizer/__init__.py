@@ -10,10 +10,18 @@ class Rando(bl2sdk.BL2MOD):
     Name = "Weapon Randomizer"
     Description = "Changes your Weapon every 10 seconds."
     Author = "Juso"
+    Options = [
+        Options.SpinnerOption("Mode",
+                              "Change the way your random gun gets generated.", 0, ["Balanced", "Mayhem"]),
+        Options.SliderOption("Timer", "Set the timer how long it takes to randomize your gun.", 10.0, 0.1, 60.0, 0.25),
+    ]
 
     def __init__(self):
+        self.WeaponParts = []
+        self.b_mayhem = False
         self.old_gun = None
         self.clock = 0.0
+        self.timer = 10.0
         self.WeaponTypeDefinition = []
         self.BalanceDefinition = []
         self.ManufacturerDefinition = []
@@ -31,27 +39,40 @@ class Rando(bl2sdk.BL2MOD):
         self.types = ("pistol", "sniper", "launcher", "shotgun", "smg", "assault")
 
     def Enable(self):
+        for option in self.Options:
+            self.RegisterGameConfigOption(option)
         bl2sdk.RegisterHook("WillowGame.WillowGameViewportClient.Tick", "Tick", on_tick)
         self.populate_lists()
 
     def Disable(self):
+        for option in self.Options:
+            self.UnregisterGameConfigOption(option)
         bl2sdk.RemoveHook("WillowGame.WillowGameViewportClient.Tick", "Tick")
 
+    def ModOptionChanged(self, option, newValue):
+        if option in self.Options:
+            if option.Caption == "Mode":
+                self.b_mayhem = bool(newValue)
+
+            elif option.Caption == "Timer":
+                self.timer = newValue
+
     def populate_lists(self):
-        temp_wpd = FindAll("WeaponPartDefinition")
+        self.WeaponParts = FindAll("WeaponPartDefinition")
 
         self.WeaponTypeDefinition = FindAll("WeaponTypeDefinition")
         self.BalanceDefinition = FindAll("WeaponBalanceDefinition")
         self.ManufacturerDefinition = FindAll("ManufacturerDefinition")
-        self.BodyPartDefinition = [x for x in temp_wpd if ".body." in get_obj_path_name(x).lower()]
-        self.GripPartDefinition = [x for x in temp_wpd if ".grip." in get_obj_path_name(x).lower()]
-        self.BarrelPartDefinition = [x for x in temp_wpd if ".barrel." in get_obj_path_name(x).lower()]
-        self.SightPartDefinition = [x for x in temp_wpd if ".sight." in get_obj_path_name(x).lower()]
-        self.StockPartDefinition = [x for x in temp_wpd if ".stock." in get_obj_path_name(x).lower()]
-        self.ElementalPartDefinition = [x for x in temp_wpd if ".elemental." in get_obj_path_name(x).lower()]
-        self.Accessory1PartDefinition = [x for x in temp_wpd if ".accessory." in get_obj_path_name(x).lower()]
-        self.Accessory2PartDefinition = [x for x in temp_wpd if ".accessory." in get_obj_path_name(x).lower()]
-        self.MaterialPartDefinition = [x for x in temp_wpd if ".manufacturermaterials." in get_obj_path_name(x).lower()]
+        self.BodyPartDefinition = [x for x in self.WeaponParts if ".body." in get_obj_path_name(x).lower()]
+        self.GripPartDefinition = [x for x in self.WeaponParts if ".grip." in get_obj_path_name(x).lower()]
+        self.BarrelPartDefinition = [x for x in self.WeaponParts if ".barrel." in get_obj_path_name(x).lower()]
+        self.SightPartDefinition = [x for x in self.WeaponParts if ".sight." in get_obj_path_name(x).lower()]
+        self.StockPartDefinition = [x for x in self.WeaponParts if ".stock." in get_obj_path_name(x).lower()]
+        self.ElementalPartDefinition = [x for x in self.WeaponParts if ".elemental." in get_obj_path_name(x).lower()]
+        self.Accessory1PartDefinition = [x for x in self.WeaponParts if ".accessory." in get_obj_path_name(x).lower()]
+        self.Accessory2PartDefinition = [x for x in self.WeaponParts if ".accessory." in get_obj_path_name(x).lower()]
+        self.MaterialPartDefinition = [x for x in self.WeaponParts if ".manufacturermaterials."
+                                       in get_obj_path_name(x).lower()]
         self.PrefixPartDefinition = [x for x in FindAll("WeaponNamePartDefinition")
                                      if ".prefix" in get_obj_path_name(x).lower()]
         self.TitlePartDefinition = [x for x in FindAll("WeaponNamePartDefinition")
@@ -76,6 +97,14 @@ class Rando(bl2sdk.BL2MOD):
                 choice(self.PrefixPartDefinition), choice(self.TitlePartDefinition),
                 exp_level, exp_level)
 
+    def get_random_def_data_mayhem(self):
+        exp_level = get_player_controller().Pawn.GetExpLevel()
+        return (choice(self.WeaponTypeDefinition), choice(self.BalanceDefinition), choice(self.ManufacturerDefinition),
+                exp_level, choice(self.WeaponParts), choice(self.WeaponParts), choice(self.WeaponParts),
+                choice(self.WeaponParts), choice(self.WeaponParts), choice(self.WeaponParts), choice(self.WeaponParts),
+                choice(self.WeaponParts), choice(self.WeaponParts),
+                choice(self.PrefixPartDefinition), choice(self.TitlePartDefinition), exp_level, exp_level)
+
     def change_weapon(self):
         pawn_inv_manager = get_player_controller().GetPawnInventoryManager()
         if not self.old_gun:
@@ -85,7 +114,8 @@ class Rando(bl2sdk.BL2MOD):
 
         willow_weapon = get_current_worldinfo().Spawn(bl2sdk.FindClass('WillowWeapon'))
         pawn_inv_manager.ChangedWeapon()
-        definition_data = self.get_random_def_data()
+
+        definition_data = self.get_random_def_data_mayhem() if self.b_mayhem else self.get_random_def_data()
 
         willow_weapon.InitializeFromDefinitionData(definition_data, pawn_inv_manager.Instigator, True)
         willow_weapon.AdjustWeaponForBeingInBackpack()
@@ -100,8 +130,12 @@ RandoInstance = Rando()
 
 
 def on_tick(caller: UObject, function: UFunction, params: FStruct) -> bool:
+    if get_player_controller().GFxUIManager.WantsPause() or get_player_controller().bStatusMenuOpen:
+        return True
+    elif get_current_worldinfo().GetStreamingPersistentMapName() == "menumap":
+        return True
     RandoInstance.clock += params.DeltaTime
-    if RandoInstance.clock > 10.:
+    if RandoInstance.clock > RandoInstance.timer:
         RandoInstance.clock = 0.
         RandoInstance.change_weapon()
     return True
