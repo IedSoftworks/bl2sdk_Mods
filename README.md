@@ -31,6 +31,11 @@
 - Saves settings to .jsons
 - [YouTube](https://youtu.be/nABmVIYpuXg)
 
+## ConsoleGames
+- Simple framework to use the ingame console as a ASCII-Canvas
+- Includes: Snake
+- [YouTube](https://www.youtube.com/watch?v=4prs9ELj0z8&feature=youtu.be)
+
 ## CritsonlyGameMode
 - Challenge GameMode
 - Enemies that do have a crit spot can now only be damaged with critical hits
