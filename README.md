@@ -3,7 +3,6 @@
 ## To use these mods please install the [python-sdk](https://github.com/bl-sdk/PythonSDK)
 ### If you like what you see and want to use it yourself go ahead, use these mods freely as resource for anything. No credits needed.
 
-[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://paypal.me/juso42?locale.x=de_DE)
 
 ## BeGoneOutOfBoundsLoot
 - On the press of one button you can now teleport all the Loot in one map to your position
