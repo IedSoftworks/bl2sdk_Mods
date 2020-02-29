@@ -70,6 +70,12 @@
 - Always make sure to remove the custom marker before closing the map, else it may bug out for a short duration and you get teleported to the wrong location once or twice!
 - [YouTube](https://youtu.be/qHVZJ0VUMSg)
 
+## ModMerger
+- Will merge and exec all .txt and .blcm files in its directory
+- Automatically merges the hotfixes
+- Will always use the correct hotfix method, depending on if you are online or offline
+- Should be future proof in case GearBox decides to change Hotfixes again
+
 ## NoCrosshair
 - Removes the crosshair while not zoomed in
 
