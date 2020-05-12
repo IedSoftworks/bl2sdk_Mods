@@ -23,12 +23,12 @@ class BGOOBL(bl2sdk.BL2MOD):
                 lst[2] += 10
                 Location = tuple(lst)
 
+    Keybinds = [("Teleport Loot To Me", "Enter"), ]
     def Enable(self):
-        self.RegisterGameInput("Teleport Loot To Me", "Enter")
+        pass
 
     def Disable(self):
-        self.UnregisterGameInput("Teleport Loot To Me")
-
+        pass
 
 
 BGOOBLInstance = BGOOBL()
