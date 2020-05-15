@@ -1,19 +1,19 @@
-import bl2sdk
-from bl2sdk import *
+import unrealsdk
+from unrealsdk import *
 
 from .bl2tools import *
 
 from random import choice
 
 
-class Rando(bl2sdk.BL2MOD):
+class Rando(unrealsdk.BL2MOD):
     Name = "Weapon Randomizer"
     Description = "Changes your Weapon every 10 seconds."
     Author = "Juso"
+
     Options = [
-        Options.SpinnerOption("Mode",
-                              "Change the way your random gun gets generated.", 0, ["Balanced", "Mayhem"]),
-        Options.SliderOption("Timer", "Set the timer how long it takes to randomize your gun.", 10.0, 0.1, 60.0, 0.25),
+        Options.Spinner("Mode", "Change the way your random gun gets generated.", "Balanced", ["Balanced", "Mayhem"]),
+        Options.Slider("Timer", "Set the timer how long it takes to randomize your gun.", 10.0, 0.1, 60.0, 0.25),
     ]
 
     def __init__(self):
@@ -39,20 +39,16 @@ class Rando(bl2sdk.BL2MOD):
         self.types = ("pistol", "sniper", "launcher", "shotgun", "smg", "assault")
 
     def Enable(self):
-        for option in self.Options:
-            self.RegisterGameConfigOption(option)
-        bl2sdk.RegisterHook("WillowGame.WillowGameViewportClient.Tick", "Tick", on_tick)
+        unrealsdk.RegisterHook("WillowGame.WillowGameViewportClient.Tick", "Tick", on_tick)
         self.populate_lists()
 
     def Disable(self):
-        for option in self.Options:
-            self.UnregisterGameConfigOption(option)
-        bl2sdk.RemoveHook("WillowGame.WillowGameViewportClient.Tick", "Tick")
+        unrealsdk.RemoveHook("WillowGame.WillowGameViewportClient.Tick", "Tick")
 
     def ModOptionChanged(self, option, newValue):
         if option in self.Options:
             if option.Caption == "Mode":
-                self.b_mayhem = bool(newValue)
+                self.b_mayhem = (newValue == "Balanced")
 
             elif option.Caption == "Timer":
                 self.timer = newValue
@@ -112,7 +108,7 @@ class Rando(bl2sdk.BL2MOD):
         else:
             pawn_inv_manager.InventoryUnreadied(pawn_inv_manager.GetWeaponInSlot(1), False)
 
-        willow_weapon = get_current_worldinfo().Spawn(bl2sdk.FindClass('WillowWeapon'))
+        willow_weapon = get_current_worldinfo().Spawn(unrealsdk.FindClass('WillowWeapon'))
         pawn_inv_manager.ChangedWeapon()
 
         definition_data = self.get_random_def_data_mayhem() if self.b_mayhem else self.get_random_def_data()
@@ -141,4 +137,4 @@ def on_tick(caller: UObject, function: UFunction, params: FStruct) -> bool:
     return True
 
 
-bl2sdk.Mods.append(RandoInstance)
+unrealsdk.Mods.append(RandoInstance)
