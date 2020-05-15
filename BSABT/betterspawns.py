@@ -52,8 +52,8 @@ class Spawns:
         unrealsdk.RemoveHook("WillowGame.WillowPlayerController.ClientSetPawnLocation", "Spawn_Hook")
 
     def save_spawn_station(self, station):
+        my_spawn_dict = {}
         if os.path.exists(os.path.join(self.PATH, "spawnpoint.json")):
-            my_spawn_dict = {}
             with open(os.path.join(self.PATH, "spawnpoint.json"), "r") as file:
                 try:
                     my_spawn_dict = json.load(file)
