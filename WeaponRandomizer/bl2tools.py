@@ -1,4 +1,4 @@
-import bl2sdk
+import unrealsdk
 
 
 def get_player_controller():
@@ -6,7 +6,7 @@ def get_player_controller():
     Get the current WillowPlayerController Object.
     :return: WillowPlayerController
     """
-    return bl2sdk.GetEngine().GamePlayers[0].Actor
+    return unrealsdk.GetEngine().GamePlayers[0].Actor
 
 
 def get_obj_path_name(object):
@@ -38,11 +38,11 @@ def obj_is_in_class(obj, inClass):
     :param inClass: String, the Class to compare with
     :return: Bool, whether or not it's in the Class.
     """
-    return bool(obj.Class == bl2sdk.FindClass(inClass))
+    return bool(obj.Class == unrealsdk.FindClass(inClass))
 
 
 def get_current_worldinfo():
-    return bl2sdk.GetEngine().GetCurrentWorldInfo()
+    return unrealsdk.GetEngine().GetCurrentWorldInfo()
 
 
 def get_weapon_holding():
@@ -50,4 +50,4 @@ def get_weapon_holding():
     Get the weapon the WillowPlayerPawn is currently holding.
     :return: WillowWeapon
     """
-    return bl2sdk.GetEngine().GamePlayers[0].Actor.Pawn.Weapon
+    return unrealsdk.GetEngine().GamePlayers[0].Actor.Pawn.Weapon
