@@ -8,6 +8,11 @@
 - On the press of one button you can now teleport all the Loot in one map to your position
 - By default the button is "Enter", can be rebinded
 
+## BSABT
+- Teleport to your car or the FT Station from ingame Map Menu
+- Open FT Menu from anywhere
+- Spawn on the last triggered respawn station
+
 ## Chronos
 - Replaces the Skullmasher
 - Slows down time while zoomed in
