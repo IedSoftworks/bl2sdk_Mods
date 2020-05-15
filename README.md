@@ -8,7 +8,7 @@
 - On the press of one button you can now teleport all the Loot in one map to your position
 - By default the button is "Enter", can be rebinded
 
-## BSABT
+## BSABT(Better Spawn and Better Travel)
 - Teleport to your car or the FT Station from ingame Map Menu
 - Open FT Menu from anywhere
 - Spawn on the last triggered respawn station
