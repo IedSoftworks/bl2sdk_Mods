@@ -85,6 +85,10 @@
 ## NoCrosshair
 - Removes the crosshair while not zoomed in
 
+## Photomode
+- Adds a minimalistic Photomode to the game
+- Default keybinds are P: Enable/Disable PhotoMode; ScrollWheel+/-: Camera Roll +/-
+
 ## PizzaForFastball
 - Replaces the Fastballs Mesh with a Pizza
 - [picture](https://ibb.co/nb1cmgt)
