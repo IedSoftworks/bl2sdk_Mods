@@ -12,9 +12,9 @@ class Photo(BL2MOD):
     def __init__(self):
         self.b_photo = False
         self.pawn = None
-        self.Keybinds = [("Photomode", "P"),
-                         ("Photomode Roll+", "MouseScrollUp"),
-                         ("Photomode Roll-", "MouseScrollDown")]
+        self.Keybinds = [["Photomode", "P"],
+                         ["Photomode Roll+", "MouseScrollUp"],
+                         ["Photomode Roll-", "MouseScrollDown"]]
 
     def GameInputPressed(self, input):
         if input.Name == "Photomode":
