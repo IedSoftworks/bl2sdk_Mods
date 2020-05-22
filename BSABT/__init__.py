@@ -16,7 +16,7 @@ class Main(BL2MOD):
                   "default) F1 key."
     Author = "Juso"
 
-    Keybinds = [("Show FT", "F1"), ]
+    Keybinds = [["Show FT", "F1"], ]
 
     def __init__(self):
         self.FILE_PATH = os.path.dirname(os.path.realpath(__file__))
