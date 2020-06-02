@@ -1,5 +1,6 @@
-import bl2sdk
-from bl2sdk import *
+import unrealsdk
+from unrealsdk import *
+from ..OptionManager import Options
 import json
 import os
 
@@ -10,21 +11,21 @@ class Viewmodel(BL2MOD):
                   "A mod that allows you to set your viewmodel the way you like it!"
     Author = "Juso"
     Options = [
-        Options.SpinnerOption("Save current type to file", "Save the current configuration for"
-                                              " the current WeaponType", 0, ["Save", "Save"]),
-        Options.SpinnerOption("Save same type to file", "Save the current configuration for"
-                                              " all the same WeaponTypes", 0, ["Save All", "Save All"]),
-        Options.SpinnerOption("Load from files", "Loads your previously saved configs.", 0, ["Load", "Load"]),
+        Options.Spinner("Save current type to file", "Save the current configuration for"
+                                              " the current WeaponType", "Save", ["Save", "Save"]),
+        Options.Spinner("Save same type to file", "Save the current configuration for"
+                                              " all the same WeaponTypes", "Save All", ["Save All", "Save All"]),
+        Options.Spinner("Load from files", "Loads your previously saved configs.", "Load", ["Load", "Load"]),
 
-        Options.SliderOption("FirstPersonMeshFOV", "Change the FirstPersonMeshFOV", 45, 0, 100, 1),
-        Options.SliderOption("PlayerViewOffset.X", "Change the PlayerViewOffset X Value", 20, -100, 100, 1),
-        Options.SliderOption("PlayerViewOffset.Y", "Change the PlayerViewOffset Y Value", 4, -100, 100, 1),
-        Options.SliderOption("PlayerViewOffset.Z", "Change the PlayerViewOffset Z Value", 2, -100, 100, 1),
-        Options.SliderOption("PlayerViewOffset.Z", "Change the PlayerViewOffset Z Value", 2, -100, 100, 1),
+        Options.Slider("FirstPersonMeshFOV", "Change the FirstPersonMeshFOV", 45, 0, 100, 1),
+        Options.Slider("PlayerViewOffset.X", "Change the PlayerViewOffset X Value", 20, -100, 100, 1),
+        Options.Slider("PlayerViewOffset.Y", "Change the PlayerViewOffset Y Value", 4, -100, 100, 1),
+        Options.Slider("PlayerViewOffset.Z", "Change the PlayerViewOffset Z Value", 2, -100, 100, 1),
+        Options.Slider("PlayerViewOffset.Z", "Change the PlayerViewOffset Z Value", 2, -100, 100, 1),
 
-        Options.SliderOption("RelativeRotation.Pitch", "Change the Pitch of the Weapon", 0, -32768, 32768, 182),
-        Options.SliderOption("RelativeRotation.Yaw", "Change the Yaw of the Weapon", 16384, -32768, 32768, 182),
-        Options.SliderOption("RelativeRotation.Roll", "Change the Roll of the Weapon", 0, -32768, 32768, 182),
+        Options.Slider("RelativeRotation.Pitch", "Change the Pitch of the Weapon", 0, -32768, 32768, 182),
+        Options.Slider("RelativeRotation.Yaw", "Change the Yaw of the Weapon", 16384, -32768, 32768, 182),
+        Options.Slider("RelativeRotation.Roll", "Change the Roll of the Weapon", 0, -32768, 32768, 182),
     ]
 
     PATH = os.path.dirname(os.path.realpath(__file__))
@@ -33,12 +34,10 @@ class Viewmodel(BL2MOD):
         return GetEngine().GamePlayers[0].Actor
 
     def Enable(self):
-        for option in self.Options:
-            self.RegisterGameConfigOption(option)
+        pass
 
     def Disable(self):
-        for option in self.Options:
-            self.UnregisterGameConfigOption(option)
+        pass
 
     def change_MeshFOV(self,  value, WT):
         WT.FirstPersonMeshFOV = value
@@ -83,6 +82,9 @@ class Viewmodel(BL2MOD):
 
     def ModOptionChanged(self, option, newValue):
         if option in self.Options:
+            if not self.get_pc() or not self.get_pc().Pawn or not self.get_pc().Pawn.Weapon:
+                return
+
             WeaponType = self.get_pc().Pawn.Weapon.DefinitionData.WeaponTypeDefinition
             if option.Caption == "FirstPersonMeshFOV":
                 self.change_MeshFOV(newValue, WeaponType)
@@ -135,9 +137,8 @@ class Viewmodel(BL2MOD):
                                             pass
 
 
-ViewmodelInstance = Viewmodel()
-Mods.append(ViewmodelInstance)
 
+unrealsdk.RegisterMod(Viewmodel())
 
 # IronsightsRotation (Pitch=425,Yaw=-603,Roll=-128) WillowPlayerPawn
 # Use this for an inspection mod
